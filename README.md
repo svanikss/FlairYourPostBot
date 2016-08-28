@@ -1,12 +1,28 @@
 # FlairYourPostBot
 
-A reddit bot to remind users to flair their post
+A reddit bot to remind users to flair their post created by /u/kooldawgstar on reddit
 
-#What does it do?
+#Features
 
-1) If the user does not add link flair to their post within 3 minutes it sends them a pm reminding them to flair their post within 1 hour. The message looks like [this](http://imgur.com/a/7RdaM)
+1) Posts are now removed after 3 minutes and user is sent pm to flair their post. View pm [here](http://imgur.com/a/PRDAn).
 
-2) If post is not flaired withing 1 hour it will be removed and they will have to resubmit the post
+2) If post is flaired within 10 minutes post will be approved, but if it is not flaired within 10 minutes they will receive a pm like [this](http://imgur.com/a/Dm7Jw)
+
+3) The bot now auto accepts mod invites so no interactions on my part
+
+#Looking Ahead
+
+In the coming days I will be working on adding this in for the next update:
+
+1) Custom Pms per subreddit
+
+2) Open source the project
+
+3) Implement suggestions you guys may have
+
+#Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
+
+The bot works in 7 subreddits which consist of a total of 153,121 subscribers!
 
 #How to Install
 
