@@ -8,7 +8,6 @@ A reddit bot to remind users to flair their post created by /u/kooldawgstar on r
 
 2) If post is flaired within 10 minutes post will be approved, but if it is not flaired within 10 minutes they will receive a pm like [this](http://imgur.com/a/Dm7Jw)
 
-3) The bot now auto accepts mod invites so no interactions on my part
 
 #Looking Ahead
 
@@ -22,7 +21,7 @@ In the coming days I will be working on adding this in for the next update:
 
 #Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
 
-The bot works in 7 subreddits which consist of a total of 153,121 subscribers!
+The bot works in 11 subreddits which consist of a total of 498,167 subscribers!
 
 #How to Install
 
