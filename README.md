@@ -21,7 +21,7 @@ In the coming days I will be working on adding this in for the next update:
 
 #Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
 
-The bot works in 11 subreddits which consist of a total of 498,167 subscribers!
+The bot works in 12 subreddits which consist of a total of 670,465 subscribers!
 
 #How to Install
 
