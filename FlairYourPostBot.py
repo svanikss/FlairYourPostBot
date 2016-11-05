@@ -1,6 +1,6 @@
 import praw
 from datetime import timedelta
-from time import time, sleep
+from time import time
 import asyncio
 
 
@@ -32,12 +32,36 @@ add_flair_message = ("[Your recent post]({post_url}) does not have any flair and
 remove_post_subject_line = "You have not tagged your post within the allotted amount of time."
 remove_post_message = "[Your recent post]({post_url}) still does not have any flair and will remain removed, feel free to resubmit your post and remember to flair it once it is posted.*"
 
-no_flair = []
+no_flair = [] # Posts that still have a grace period to add a flair
+
 user_agent = ("Auto flair moderator for reddit created by /u/kooldawgstar") # tells reddit the bot's purpose.
 session = praw.Reddit(user_agent=user_agent)
-session.login(username =username, password=password)
+session.login(username=username, password=password)
 subreddit = session.get_subreddit(subreddit_name)
 
+
+@asyncio.coroutine
+def acceptmodinvites():
+    try:
+        for message in session.get_unread():
+            if message.body.startswith('**gadzooks!'):
+                print("Checking out possible mod invite")
+                try:
+                    print("Accepted Invite")
+                    sr = session.get_info(thing_id=message.subreddit.fullname)
+                    sr.accept_moderator_invite()
+                except AttributeError:
+                    print("Tried to parse an invalid invite")
+                    continue
+                except praw.errors.InvalidInvite:
+                    print("Tried to parse an invalid invite")
+                    continue
+            message.mark_as_read()
+    except Exception as e:
+        print("{0}: {1}".format(type(e).__name__, str(e)))
+
+    yield from asyncio.sleep(3600)
+    yield from acceptmodinvites()
 
 @asyncio.coroutine
 def main():
@@ -47,41 +71,51 @@ def main():
             while i < posts_to_forget:
                 no_flair.pop(0)
                 i += 1
+
+    print("Parsing..")
     try:
         for submission in subreddit.get_new(limit=post_grab_limit):
             # If message has no flair
-            if((time() - submission.created_utc) > time_until_message) and submission.id not in no_flair:
-                final_add_flair_message = add_flair_message.format(post_url=submission.short_link)
-                session.send_message(submission.author, add_flair_subject_line, final_add_flair_message)
-                print("Message sent to: {}".format(submission.author))
-                no_flair.append(submission.id)
-                continue
+            if (submission.link_flair_text is None):
+                if((time() - submission.created_utc) > time_until_message) and submission.id not in no_flair:
+                    final_add_flair_message = add_flair_message.format(post_url=submission.short_link)
+                    session.send_message(submission.author, add_flair_subject_line, final_add_flair_message)
+                    print("Sent Message to : {}".format(submission.author))
+                    no_flair.append(submission.id)
+                    continue
 
-            if((time() - submission.created_utc) > time_until_remove):
-                if (submission.link_flair_text is None):
+                if((time() - submission.created_utc) > time_until_remove):
                     final_remove_post_message = remove_post_message.format(post_url=submission.short_link)
                     session.send_message(submission.author, remove_post_subject_line, final_remove_post_message)
-                    print("Submission removed: {}".format(submission.short_link))
+                    print("Removed {0.short_link} of {0.author}'s".format(submission))
                     submission.remove()
-                no_flair.remove(submission.id)
-                continue
+                    no_flair.remove(submission.id)
+                    continue
 
             if submission.id in no_flair and submission.link_flair_text:
                 submission.approve()
-                print("Submission Approved: {}".format(submission.short_link))
+                print("Approved {0.short_link} of {0.author}'s".format(submission))
                 no_flair.remove(submission.id)
                 continue
 
     except Exception as e:
         print("{0}: {1}".format(type(e).__name__, str(e)))
 
-    sleep(30)
-    print("mm lol")
+    print("Done")
+    yield from asyncio.sleep(30)
     yield from main()
 
 
 # Puts main func into a loop and runs forever
-print("Starting...")
 loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+
+print("Registered Main")
+asyncio.ensure_future(main())
+
+print("Registered Mod Invites")
+asyncio.ensure_future(acceptmodinvites())
+
+print("\nStarting...\n")
+loop.run_forever()
+
 loop.close()
