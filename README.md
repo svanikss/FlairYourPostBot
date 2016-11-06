@@ -15,9 +15,7 @@ In the coming days I will be working on adding this in for the next update:
 
 1) Custom Pms per subreddit
 
-2) Open source the project
-
-3) Implement suggestions you guys may have
+2) Implement suggestions you guys may have
 
 #Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
 
