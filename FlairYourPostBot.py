@@ -21,9 +21,9 @@ subreddit_name = "mod"
 `no_flair` : Posts that still have a grace period to add a flair`
 '''
 
-sleep_time = 300
-time_until_message = 30
-time_until_remove = 200
+sleep_time = 10
+time_until_message = 180
+time_until_remove = 600
 h_time_until_remove = str(timedelta(seconds=time_until_remove))
 post_grab_limit = 20
 post_memory_limit = 100
@@ -113,7 +113,7 @@ def inbox_stuff():
             print(traceback.format_exc())
             print("{0}: {1}".format(type(e).__name__, str(e)))
 
-        yield from asyncio.sleep(10)
+        yield from asyncio.sleep(sleep_time)
 
     yield from inbox_stuff()
 
@@ -163,7 +163,7 @@ def main():
             print(traceback.format_exc())
             print("{0}: {1}".format(type(e).__name__, str(e)))
 
-        yield from asyncio.sleep(15)
+        yield from asyncio.sleep(sleep_time)
 
     yield from main()
 
