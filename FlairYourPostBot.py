@@ -1,9 +1,11 @@
 import praw
+import asyncio
+import traceback
+
 from datetime import timedelta
 from time import time
-import asyncio
 from collections import OrderedDict
-import traceback
+
 
 username = "USERNAME"
 password = "PASSWORD"
