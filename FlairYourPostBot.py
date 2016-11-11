@@ -38,8 +38,6 @@ add_flair_message = ("[Your recent post]({post_url}) does not have any flair and
                      "Don't know how to flair your post? Click [here](http://imgur.com/a/m3FI3) to view this helpful guide on how to flair your post. "
                      "If you are using the mobile version of the site click the hamburger menu in the top right of the screen and switch to the desktop site and then follow the instructions as you would on desktop.")
 
-
-
 remove_post_subject_line = "You have not tagged your post within the allotted amount of time."
 remove_post_message = "[Your recent post]({post_url}) still does not have any flair and will remain removed, feel free to resubmit your post and remember to flair it once it is posted.*"
 
