@@ -6,6 +6,11 @@ from datetime import timedelta
 from time import time
 from collections import OrderedDict
 
+try:
+    from asyncio import ensure_future
+except ImportError:
+    ensure_future = asyncio.async
+
 
 username = "USERNAME"
 password = "PASSWORD"
@@ -167,20 +172,20 @@ def main():
 
     yield from main()
 
+if __name__ == "__main__":
+    # Puts main func into a loop and runs forever
+    loop = asyncio.get_event_loop()
 
-# Puts main func into a loop and runs forever
-loop = asyncio.get_event_loop()
+    print("Registering session refresh\n")
+    ensure_future(refresh_sesison())
 
-print("Registering session refresh\n")
-asyncio.ensure_future(refresh_sesison())
+    print("Registering Mod Invites\n")
+    ensure_future(inbox_stuff())
 
-print("Registering Mod Invites\n")
-asyncio.ensure_future(inbox_stuff())
+    print("Registering Main\n")
+    ensure_future(main())
 
-print("Registering Main\n")
-asyncio.ensure_future(main())
+    print("\nStarting...\n")
+    loop.run_forever()
 
-print("\nStarting...\n")
-loop.run_forever()
-
-loop.close()
+    loop.close()
