@@ -12,7 +12,6 @@ A reddit bot to remind users to flair their post created by /u/kooldawgstar on r
 
 4) If user responds with the name of the flair the bot will auto flair the post
 
-5) 
 
 
 #Looking Ahead
