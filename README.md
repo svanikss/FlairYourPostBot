@@ -8,6 +8,12 @@ A reddit bot to remind users to flair their post created by /u/kooldawgstar on r
 
 2) If post is flaired within 10 minutes post will be approved, but if it is not flaired within 10 minutes they will receive a pm like [this](http://imgur.com/a/Dm7Jw)
 
+3) Auto Accepts Mod invites
+
+4) If user responds with the name of the flair the bot will auto flair the post
+
+5) 
+
 
 #Looking Ahead
 
