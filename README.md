@@ -4,7 +4,7 @@ A reddit bot to remind users to flair their post created by /u/kooldawgstar on r
 
 #Features
 
-1) Posts are now removed after 3 minutes and user is sent pm to flair their post. View pm [here](http://imgur.com/a/PRDAn).
+1) Posts are now removed after 3 minutes and user is sent pm to flair their post. View pm [here](http://imgur.com/a/ggXHH).
 
 2) If post is flaired within 10 minutes post will be approved, but if it is not flaired within 10 minutes they will receive a pm like [this](http://imgur.com/a/Dm7Jw)
 
