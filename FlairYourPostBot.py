@@ -37,7 +37,7 @@ post_memory_limit = 100
 posts_to_forget = post_memory_limit - post_grab_limit
 
 add_flair_subject_line = "You have not tagged your post."
-add_flair_message = ("[Your recent post]({post_url}) does not have any flair and has been removed. \n\n"
+add_flair_message = ("[Your recent post]({post_url}) does not have any flair and will soon be removed.\n\n"
                      "Please add flair to your post. "
                      "If you do not add flair within **" + h_time_until_remove + "**, you will have to resubmit your post. "
                      "Don't know how to flair your post? Click [here](http://imgur.com/a/m3FI3) to view this helpful guide on how to flair your post. "
@@ -47,7 +47,6 @@ remove_post_subject_line = "You have not tagged your post within the allotted am
 remove_post_message = "[Your recent post]({post_url}) still does not have any flair and will remain removed, feel free to resubmit your post and remember to flair it once it is posted.*"
 
 no_flair = OrderedDict()
-
 user_agent = ("Auto flair moderator for reddit created by /u/kooldawgstar") # tells reddit the bot's purpose.
 session = praw.Reddit(user_agent=user_agent)
 session.login(username=username, password=password, disable_warning=True)
@@ -142,7 +141,7 @@ def main():
             for submission in subreddit.get_new(limit=post_grab_limit):
                 # If message has no flair
                 if (submission.link_flair_text is None):
-                    if((time() - submission.created_utc) > time_until_message) and submission.id not in no_flair:
+                    if((time() - submission.created_utc) > time_until_message) and submission.id not in no_flair.values():
                         final_add_flair_message = add_flair_message.format(post_url=submission.short_link)
                         print("Sent Message to : {}".format(submission.author))
                         session.send_message(submission.author, add_flair_subject_line, final_add_flair_message)
@@ -155,14 +154,18 @@ def main():
                         final_remove_post_message = remove_post_message.format(post_url=submission.short_link)
                         session.send_message(submission.author, remove_post_subject_line, final_remove_post_message)
                         print("Removed {0.short_link} of {0.author}'s".format(submission))
+                        for k in list(no_flair.keys()):
+                            if no_flair[k] == submission.id:
+                                no_flair.pop(k)
                         submission.remove()
-                        no_flair.pop(submission.id)
                         continue
                 #
-                if submission.id in no_flair and submission.link_flair_text:
+                if submission.id in no_flair.values() and submission.link_flair_text:
                     submission.approve()
                     print("Approved {0.short_link} of {0.author}'s".format(submission))
-                    no_flair.pop(submission.id)
+                    for k in list(no_flair.keys()):
+                        if no_flair[k] == submission.id:
+                            no_flair.pop(k)
                     continue
         except Exception as e:
             print(traceback.format_exc())
