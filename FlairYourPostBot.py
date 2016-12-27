@@ -35,7 +35,7 @@ h_time_until_remove = str(timedelta(seconds=time_until_remove))
 post_grab_limit = 20
 post_memory_limit = 100
 posts_to_forget = post_memory_limit - post_grab_limit
-
+add_flair_message_wiki = r.get_wiki_page(subreddit,"FlairYourPostBotInitial")
 add_flair_subject_line = "You have not tagged your post."
 add_flair_message = ("[Your recent post]({post_url}) does not have any flair and will soon be removed.\n\n"
                      "Please add flair to your post. "
@@ -45,6 +45,7 @@ add_flair_message = ("[Your recent post]({post_url}) does not have any flair and
 
 remove_post_subject_line = "You have not tagged your post within the allotted amount of time."
 remove_post_message = "[Your recent post]({post_url}) still does not have any flair and will remain removed, feel free to resubmit your post and remember to flair it once it is posted.*"
+remove_post_message_wiki = r.get_wiki_page(subreddit,"FlairYourPostBotFinal")
 
 no_flair = OrderedDict()
 user_agent = ("Auto flair moderator for reddit created by /u/kooldawgstar") # tells reddit the bot's purpose.
@@ -142,7 +143,7 @@ def main():
                 # If message has no flair
                 if (submission.link_flair_text is None):
                     if((time() - submission.created_utc) > time_until_message) and submission.id not in no_flair.values():
-                        final_add_flair_message = add_flair_message.format(post_url=submission.short_link)
+                        final_add_flair_message = add_flair_message_wiki.format(post_url=submission.short_link)
                         print("Sent Message to : {}".format(submission.author))
                         session.send_message(submission.author, add_flair_subject_line, final_add_flair_message)
                         for msg in session.get_sent():
@@ -151,7 +152,7 @@ def main():
                                 continue
 
                     if((time() - submission.created_utc) > time_until_remove):
-                        final_remove_post_message = remove_post_message.format(post_url=submission.short_link)
+                        final_remove_post_message = remove_post_message_wiki.format(post_url=submission.short_link)
                         session.send_message(submission.author, remove_post_subject_line, final_remove_post_message)
                         print("Removed {0.short_link} of {0.author}'s".format(submission))
                         for k in list(no_flair.keys()):
