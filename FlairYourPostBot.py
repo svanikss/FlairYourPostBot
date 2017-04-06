@@ -159,6 +159,10 @@ def main():
                                 no_flair.pop(k)
                         submission.remove()
                         continue
+                        # Keeps track of how many posts the bot removed
+                        f = open('NumberRemoved','a')
+                        f.write('1\n')
+                        f.close()
                 #
                 if submission.id in no_flair.values() and submission.link_flair_text:
                     submission.approve()

@@ -24,7 +24,7 @@ In the coming days I will be working on adding this in for the next update:
 
 #Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
 
-Click the link above to see.
+Active in 51 subreddits with over 1.3 million subscribers and attracting over 20 Million Page Views Per Month.
 
 #How to Install
 
