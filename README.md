@@ -2,7 +2,7 @@
 
 A reddit bot to remind users to flair their post created by /u/kooldawgstar on reddit
 
-#Features
+# Features
 
 1) Posts are now removed after 3 minutes and user is sent pm to flair their post. View pm [here](http://imgur.com/a/ggXHH).
 
@@ -14,7 +14,7 @@ A reddit bot to remind users to flair their post created by /u/kooldawgstar on r
 
 
 
-#Looking Ahead
+# Looking Ahead
 
 In the coming days I will be working on adding this in for the next update:
 
@@ -22,10 +22,10 @@ In the coming days I will be working on adding this in for the next update:
 
 2) Implement suggestions you guys may have
 
-#Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
+# Where is [/u/FlairYourPostBot](https://www.reddit.com/user/FlairYourPostBot) active?
 
 Active in 51 subreddits with over 1.3 million subscribers and attracting over 20 Million Page Views Per Month.
 
-#How to Install
+# How to Install
 
 Invite /u/FlairYourPostBot to your subreddit with the posts permissions and then once the invite is accepted the bot is operational. For more information visit [/r/FlairYourPostBot](https://www.reddit.com/r/FlairYourPostBot/)
