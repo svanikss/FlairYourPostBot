@@ -1,7 +1,5 @@
 # FlairYourPostBot
 
-A reddit bot to remind users to flair their post created by /u/kooldawgstar on reddit
-
 # Features
 
 1) Posts are now removed after 3 minutes and user is sent pm to flair their post. View pm [here](http://imgur.com/a/ggXHH).
